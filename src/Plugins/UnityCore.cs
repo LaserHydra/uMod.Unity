@@ -1,7 +1,7 @@
-﻿using Oxide.Core.Plugins;
-using Oxide.Core.Unity.Logging;
+﻿using uMod.Plugins;
+using uMod.Unity.Logging;
 
-namespace Oxide.Core.Unity.Plugins
+namespace uMod.Unity.Plugins
 {
     /// <summary>
     /// The core Unity plugin
@@ -28,34 +28,12 @@ namespace Oxide.Core.Unity.Plugins
         private void InitLogging()
         {
             // Create our logger and add it to the compound logger
-            Interface.Oxide.NextTick(() =>
+            Interface.uMod.NextTick(() =>
             {
                 logger = new UnityLogger();
-                Interface.Oxide.RootLogger.AddLogger(logger);
-                Interface.Oxide.RootLogger.DisableCache();
+                Interface.uMod.RootLogger.AddLogger(logger);
+                Interface.uMod.RootLogger.DisableCache();
             });
         }
-
-        #region Console/Logging
-
-        /// <summary>
-        /// Prints an info message to the server console/log
-        /// </summary>
-        /// <param name="message"></param>
-        public void Print(string message) => UnityEngine.Debug.Log(message);
-
-        /// <summary>
-        /// Prints a warning message to the server console/log
-        /// </summary>
-        /// <param name="message"></param>
-        public void PrintWarning(string message) => UnityEngine.Debug.LogWarning(message);
-
-        /// <summary>
-        /// Prints an error message to the server console/log
-        /// </summary>
-        /// <param name="message"></param>
-        public void PrintError(string message) => UnityEngine.Debug.LogError(message);
-
-        #endregion Console/Logging
     }
 }

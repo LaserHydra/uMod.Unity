@@ -2,10 +2,10 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Oxide.Core.Unity
+namespace uMod.Unity
 {
     /// <summary>
-    /// The main MonoBehaviour which calls OxideMod.OnFrame
+    /// The main MonoBehaviour which calls uMod.OnFrame
     /// </summary>
     public class UnityScript : MonoBehaviour
     {
@@ -13,23 +13,24 @@ namespace Oxide.Core.Unity
 
         public static void Create()
         {
-            Instance = new GameObject("Oxide.Core.Unity");
+            Instance = new GameObject("uMod.Unity");
             DontDestroyOnLoad(Instance);
             Instance.AddComponent<UnityScript>();
         }
 
-        private OxideMod oxideMod;
+        private uMod uMod;
 
         private void Awake()
         {
-            oxideMod = Interface.Oxide;
-
             EventInfo eventInfo = typeof(Application).GetEvent("logMessageReceived");
+            uMod = Interface.uMod;
+
             if (eventInfo == null)
             {
                 // Unity 4
                 FieldInfo logCallbackField = typeof(Application).GetField("s_LogCallback", BindingFlags.Static | BindingFlags.NonPublic);
                 Application.LogCallback logCallback = logCallbackField?.GetValue(null) as Application.LogCallback;
+
                 if (logCallback == null)
                 {
                     Interface.Oxide.LogWarning("No Unity application log callback is registered");
@@ -50,28 +51,28 @@ namespace Oxide.Core.Unity
             }
         }
 
-        private void Update() => oxideMod.OnFrame(Time.deltaTime);
+        private void Update() => uMod.OnFrame(Time.deltaTime);
 
         private void OnDestroy()
         {
-            if (oxideMod.IsShuttingDown)
+            if (!uMod.IsShuttingDown)
             {
-                return;
+                uMod.LogWarning("The uMod Unity script was destroyed (creating a new instance)");
+                uMod.NextTick(Create);
             }
-
-            oxideMod.LogWarning("The Oxide Unity Script was destroyed (creating a new instance)");
-            oxideMod.NextTick(Create);
         }
 
         private void OnApplicationQuit()
         {
-            if (!oxideMod.IsShuttingDown)
+            if (!uMod.IsShuttingDown)
             {
                 Interface.Call("OnServerShutdown");
                 Interface.Oxide.OnShutdown();
             }
         }
 
+        // ReSharper disable once MemberCanBeMadeStatic.Local
+        // This CANNOT be static! The world may impode if so, maybe worse
         private void LogMessageReceived(string message, string stackTrace, LogType type)
         {
             if (type == LogType.Exception)

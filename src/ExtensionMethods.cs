@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using CoreLogging = uMod.Logging;
 
-namespace Oxide.Core.Unity
+namespace uMod.Unity
 {
     /// <summary>
     /// Useful extension methods which are added to base types
@@ -25,20 +26,20 @@ namespace Oxide.Core.Unity
         /// </summary>
         /// <param name="logType"></param>
         /// <returns></returns>
-        public static Core.Logging.LogType ToLogType(this LogType logType)
+        public static CoreLogging.LogType ToLogType(this LogType logType)
         {
             switch (logType)
             {
                 case LogType.Assert:
                 case LogType.Error:
                 case LogType.Exception:
-                    return Core.Logging.LogType.Error;
+                    return CoreLogging.LogType.Error;
 
                 case LogType.Warning:
-                    return Core.Logging.LogType.Warning;
+                    return CoreLogging.LogType.Warning;
 
                 default:
-                    return Core.Logging.LogType.Info;
+                    return CoreLogging.LogType.Info;
             }
         }
     }

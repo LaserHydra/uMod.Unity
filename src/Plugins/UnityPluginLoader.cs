@@ -1,7 +1,7 @@
-﻿using Oxide.Core.Plugins;
-using System;
+﻿using System;
+using uMod.Plugins;
 
-namespace Oxide.Core.Unity.Plugins
+namespace uMod.Unity.Plugins
 {
     /// <summary>
     /// Responsible for loading Unity core plugins

@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using UnityEngine;
-using Logger = Oxide.Core.Logging.Logger;
-using LogType = Oxide.Core.Logging.LogType;
+using Logger = uMod.Logging.Logger;
+using LogType = uMod.Logging.LogType;
 
-namespace Oxide.Core.Unity.Logging
+namespace uMod.Unity.Logging
 {
     /// <summary>
     /// A logger that writes to the Unity console
@@ -20,7 +20,7 @@ namespace Oxide.Core.Unity.Logging
         }
 
         /// <summary>
-        /// Immediately writes a message to the unity console
+        /// Immediately writes a message to the Unity console
         /// </summary>
         /// <param name="message"></param>
         protected override void ProcessMessage(LogMessage message)

@@ -1,10 +1,10 @@
-﻿using Oxide.Core.Extensions;
-using Oxide.Core.Unity.Plugins;
-using System;
+﻿using System;
 using System.Reflection;
+using uMod.Extensions;
+using uMod.Unity.Plugins;
 using UnityEngine;
 
-namespace Oxide.Core.Unity
+namespace uMod.Unity
 {
     /// <summary>
     /// The extension class that represents this extension
