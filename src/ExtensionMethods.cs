@@ -38,6 +38,9 @@ namespace uMod.Unity
                 case LogType.Warning:
                     return CoreLogging.LogType.Warning;
 
+                case LogType.Log:
+                    return CoreLogging.LogType.Info;
+
                 default:
                     return CoreLogging.LogType.Info;
             }

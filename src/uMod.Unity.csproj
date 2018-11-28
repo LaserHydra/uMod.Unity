@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://github.com/theumod/umod.unity/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/theumod/umod.unity</PackageProjectUrl>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/14957982?s=64</PackageIconUrl>
-    <Copyright>Copyright (c) 2014-$([System.DateTime]::Now.Year) $(Authors)</Copyright>
+    <Copyright>Copyright (c) 2013-$([System.DateTime]::Now.Year) $(Authors)</Copyright>
     <PackageTags>gaming modding plugins unity unity3d</PackageTags>
     <ThisAssemblyNamespace>$(AssemblyName)</ThisAssemblyNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -29,7 +29,7 @@
     <PackageReference Include="Oxide.References" Version="2.0.*">
       <PrivateAssets>contentfiles;analyzers;build</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="uMod" Version="3.0.3875-develop" />
+    <PackageReference Include="uMod" Version="3.0.3896-develop" />
     <Reference Include="UnityEngine">
       <HintPath>Dependencies\UnityEngine.dll</HintPath>
     </Reference>

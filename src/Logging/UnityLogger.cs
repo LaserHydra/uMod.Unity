@@ -41,6 +41,14 @@ namespace uMod.Unity.Logging
                     Debug.LogWarning(message.ConsoleMessage);
                     break;
 
+                case LogType.Chat:
+                    Debug.Log(message.ConsoleMessage);
+                    break;
+
+                case LogType.Info:
+                    Debug.Log(message.ConsoleMessage);
+                    break;
+
                 default:
                     Debug.Log(message.ConsoleMessage);
                     break;

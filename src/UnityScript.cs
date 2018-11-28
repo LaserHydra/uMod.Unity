@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Reflection;
+using uMod.Logging;
 using UnityEngine;
+using LogType = UnityEngine.LogType;
+
+#pragma warning disable 0618
 
 namespace uMod.Unity
 {
@@ -36,11 +40,10 @@ namespace uMod.Unity
                     Interface.Oxide.LogWarning("No Unity application log callback is registered");
                 }
 
-#pragma warning disable 0618
-                Application.RegisterLogCallback((message, stack_trace, type) =>
+                Application.RegisterLogCallback((message, stackTrace, type) =>
                 {
-                    logCallback?.Invoke(message, stack_trace, type);
-                    LogMessageReceived(message, stack_trace, type);
+                    logCallback?.Invoke(message, stackTrace, type);
+                    LogMessageReceived(message, stackTrace, type);
                 });
             }
             else
